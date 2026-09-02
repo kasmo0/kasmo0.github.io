@@ -2,10 +2,113 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIGILALO</title>
+    <style>
+        /* Estilos generales y fondo con degradado moderno */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Contenedor principal (Tarjeta central) */
+        .container {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            color: #ffffff;
+        }
+
+        p.subtitle {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        /* Estilos para la lista de enlaces */
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .links-list a {
+            display: block;
+            background-color: #3b82f6;
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Efecto al pasar el mouse por encima */
+        .links-list a:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Estilo especial para diferenciar el primer enlace */
+        .links-list a.primary {
+            background-color: #10b981;
+        }
+
+        .links-list a.primary:hover {
+            background-color: #059669;
+            box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+        }
+    </style>
 </head>
 <body>
-    <h1>LINK DEL ESTUDIANTE</h1>
-    <p>Planea y Analiza tu Desempeño:<a href="https://github.com" target="_blank">clic aquí</a>.</p>
+
+    <div class="container">
+        <h1>Enlaces de Interés</h1>
+        <p class="subtitle">Selecciona una de las opciones a continuación:</p>
+
+        <div class="links-list">
+            <a href="http://vigilalo.com/sitio-docente/ies1sv.html" class="primary" target="_blank" rel="noopener noreferrer">
+                📚 Sitio IES1SV-26EDS Analiza y Planea tu Desempeño
+            </a>
+            
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                🐙 GitHub
+            </a>
+
+            <a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer">
+                📖 MDN Web Docs
+            </a>
+
+            <a href="https://stackoverflow.com" target="_blank" rel="noopener noreferrer">
+                💬 Stack Overflow
+            </a>
+
+            <a href="https://google.com" target="_blank" rel="noopener noreferrer">
+                🔍 Google
+            </a>
+        </div>
+    </div>
+
 </body>
 </html>
