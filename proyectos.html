@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicaciones Didácticas - Proyectos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #030712;
+            color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #tech-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.1);
+            width: 100%;
+            max-width: 750px;
+            box-sizing: border-box;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .btn-back {
+            color: #38bdf8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .btn-back:hover {
+            color: #bae6fd;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        p.subtitle {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        /* Cuadrícula o lista moderna de proyectos didácticos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(30, 41, 59, 0.6) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            border-color: rgba(56, 189, 248, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
+        }
+
+        .project-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .project-link {
+            align-self: flex-start;
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .project-link:hover {
+            background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="tech-canvas"></canvas>
+
+    <div class="container">
+        <div class="header-nav">
+            <h1>Aplicaciones Didácticas</h1>
+            <a href="index.html" class="btn-back">← Volver al Inicio</a>
+        </div>
+        <p class="subtitle">Repositorio de simulaciones, herramientas y sistemas interactivos para la enseñanza.</p>
+
+        <!-- CONTENEDOR DINÁMICO DE PROYECTOS -->
+        <div class="projects-grid" id="projects-container">
+            <!-- Los proyectos se cargan automáticamente desde el script de abajo -->
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================================================
+           AGREGA TUS NUEVOS PROYECTOS AQUÍ ABAJO
+           Simplemente copia un bloque entre llaves { ... }, cambia el título, 
+           la descripción y el enlace (URL). ¡Guarda y listo!
+           ========================================================================== */
+        const misProyectos = [
+            {
+                titulo: "Simulador de Circuitos Fotovoltaicos",
+                descripcion: "Herramienta didáctica interactiva para el cálculo de arreglos de paneles solares y eficiencia.",
+                enlace: "http://vigilalo.com/sitio-docente/ies1sv.html" // Puedes cambiarlo a la ruta de tu app
+            },
+            {
+                titulo: "Monitor de Sensores con ESP32",
+                descripcion: "Interfaz web para la visualización en tiempo real de telemetría y variables físicas.",
+                enlace: "#" // Reemplaza "#" por el link real de tu proyecto
+            },
+            {
+                titulo: "Plataforma de Evaluación por rúbricas",
+                descripcion: "Sistema web de apoyo académico para la calificación automatizada de competencias.",
+                enlace: "#" // Reemplaza "#" por el link real de tu proyecto
+            }
+        ];
+
+        // Script que pinta automáticamente los proyectos en la página
+        const container = document.getElementById('projects-container');
+        
+        misProyectos.forEach(proj => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.innerHTML = `
+                <div>
+                    <div class="project-title">${proj.titulo}</div>
+                    <div class="project-desc">${proj.descripcion}</div>
+                </div>
+                <a href="${proj.enlace}" class="project-link" target="_blank" rel="noopener noreferrer">🚀 Abrir Aplicación</a>
+            `;
+            container.appendChild(card);
+        });
+
+        /* Fondo tecnológico animado en canvas (mantiene consistencia con tu portal) */
+        const canvas = document.getElementById('tech-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.radius = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx = -this.vx;
+                if (this.y < 0 || this.y > height) this.vy = -this.vy;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(56, 189, 248, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.floor((width * height) / 18000);
+            for (let i = 0; i < count; i++) particles.push(new Particle());
+        }
+        initParticles();
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${0.15 * (1 - dist / 120)})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
